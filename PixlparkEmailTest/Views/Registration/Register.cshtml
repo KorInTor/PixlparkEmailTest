@@ -1,0 +1,33 @@
+﻿@inject IViewLocalizer Localizer
+
+<form asp-action="RegisterVerifyCode" method="post">
+    <div class="mb-3">
+        <label for="email">@Localizer["Header"] <b>@ViewBag.Email</b></label>
+        <input type="text" id="code" name="code" required class="form-control" />
+        <input type="hidden" id="email" name="email" value="@ViewBag.Email" />
+    </div>
+    <button type="submit" class="btn btn-primary">@Localizer["Send"]</button>
+</form>
+
+@if (ViewBag.Error is not null)
+{
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">@Localizer["ErrorHead"]</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Localizer["ErrorMessage"]
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts{
+    <script>
+        var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+        errorModal.show();
+    </script>
+    }
+}

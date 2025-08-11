@@ -1,0 +1,11 @@
+﻿@inject IViewLocalizer Localizer
+
+<form asp-action="RegisterSendCode" method="post">
+    <div class="mb-3">
+        <h1>@Localizer["Header"]</h1>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">@Localizer["Send"]</button>
+</form>
+    
